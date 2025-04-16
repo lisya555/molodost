@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>∞ Молодость - Личный кабинет</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ffccd5;
+            --secondary-color: #ff8fab;
+            --text-color: #590d22;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar {
+            background-color: var(--secondary-color);
+        }
+        
+        .infinity-icon {
+            color: var(--text-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .account-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff7096;
+            border-color: #ff7096;
+        }
+        
+        .review-card {
+            background-color: #fff9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-infinity infinity-icon"></i>Молодость
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="home-link">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="venues-link">Заведения</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="account-link">Мой профиль</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logout-link">Выйти</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="account-container">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="https://via.placeholder.com/150" alt="Аватар" class="user-avatar mb-3">
+                    <h3 id="user-name">Иван Иванов</h3>
+                    <p id="user-email">ivan@example.com</p>
+                    <button class="btn btn-primary mt-3">Редактировать профиль</button>
+                </div>
+                <div class="col-md-8">
+                    <h4><i class="fas fa-infinity infinity-icon"></i> Мои отзывы</h4>
+                    <div id="user-reviews">
+                        <div class="review-card">
+                            <h5><i class="fas fa-infinity infinity-icon"></i> Бар "Молодость"</h5>
+                            <div class="rating">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="far fa-star text-warning"></i>
+                            </div>
+                            <p>Отличное место, вкусная еда, приятная атмосфера. Обязательно вернусь снова!</p>
+                            <small class="text-muted">Опубликовано: 15.05.2023</small>
+                        </div>
+                        <div class="review-card">
+                            <h5><i class="fas fa-infinity infinity-icon"></i> Караоке "Молодость"</h5>
+                            <div class="rating">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="far fa-star text-warning"></i>
+                                <i class="far fa-star text-warning"></i>
+                            </div>
+                            <p>Хорошая атмосфера. Обязательно забронирую столик в следующий раз.</p>
+                            <small class="text-muted">Опубликовано: 10.05.2023</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

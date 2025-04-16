@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>∞Молодость - Отзывы</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ffccd5;
+            --secondary-color: #ff8fab;
+            --text-color: #590d22;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar {
+            background-color: var(--secondary-color);
+        }
+        
+        .infinity-icon {
+            color: var(--text-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .venue-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .review-card {
+            background-color: #fff9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff7096;
+            border-color: #ff7096;
+        }
+        
+        .star-rating {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .star-rating .far {
+            color: #ccc;
+        }
+        
+        .star-rating .fas {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-infinity infinity-icon"></i>Молодость
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="home-link">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="reviews-link">Отзывы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="account-link">Мой профиль</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logout-link">Выйти</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <h2><i class="fas fa-infinity infinity-icon"></i> Отзывы о заведении</h2>
+                
+                <div class="venue-card">
+                    <h3><i class="fas fa-infinity infinity-icon"></i> Бар "Молодость"</h3>
+                    <div class="reviews-list">
+                        <div class="review-card">
+                            <div class="d-flex justify-content-between">
+                                <h5>Анна Петрова</h5>
+                                <div>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                            </div>
+                            <p>Потрясающее место! Обслуживание на высшем уровне, еда просто восхитительная. Обязательно вернусь!</p>
+                            <small class="text-muted">Опубликовано: 20.05.2023</small>
+                        </div>
+                        <div class="review-card">
+                            <div class="d-flex justify-content-between">
+                                <h5>Сергей Иванов</h5>
+                                <div>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="far fa-star text-warning"></i>
+                                </div>
+                            </div>
+                            <p>Хороший бар, но цены немного завышены. Порции большие, качество еды отличное.</p>
+                            <small class="text-muted">Опубликовано: 18.05.2023</small>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addReviewModal">Добавить отзыв</button>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="venue-card">
+                    <h4><i class="fas fa-infinity infinity-icon"></i> Популярные заведения</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <i class="fas fa-infinity infinity-icon"></i> Бар "Молодость"
+                            <span class="badge bg-primary rounded-pill">24 отзыва</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <i class="fas fa-infinity infinity-icon"></i> Караоке "Молодость"
+                            <span class="badge bg-primary rounded-pill">18 отзывов</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <i class="fas fa-infinity infinity-icon"></i> Бар "Молодость"
+                            <span class="badge bg-primary rounded-pill">15 отзывов</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно добавления отзыва -->
+    <div class="modal fade" id="addReviewModal" tabindex="-1" aria-labelledby="addReviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addReviewModalLabel"><i class="fas fa-infinity infinity-icon"></i> Добавить отзыв</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addReviewForm">
+                        <div class="mb-3">
+                            <label for="venueSelect" class="form-label">Заведение</label>
+                            <select class="form-select" id="venueSelect" required>
+                                <option value="" selected disabled>Выберите заведение</option>
+                                <option value="1"><i class="fas fa-infinity infinity-icon"></i> Бар "Молодость"</option>
+                                <option value="2"><i class="fas fa-infinity infinity-icon"></i> Караоке "Молодость"</option>
+                                <option value="3"><i class="fas fa-infinity infinity-icon"></i> Бар "Молодость"</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Оценка</label>
+                            <div class="star-rating">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="ratingValue" name="rating" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reviewText" class="form-label">Текст отзыва</label>
+                            <textarea class="form-control" id="reviewText" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Обработка рейтинга звездами
+        document.querySelectorAll('.star-rating i').forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = this.getAttribute('data-rating');
+                document.getElementById('ratingValue').value = rating;
+                
+                const stars = this.parentElement.querySelectorAll('i');
+                stars.forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.remove('far');
+                        s.classList.add('fas');
+                    } else {
+                        s.classList.remove('fas');
+                        s.classList.add('far');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
