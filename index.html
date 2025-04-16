@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>∞Молодость - Главная</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ffccd5;
+            --secondary-color: #ff8fab;
+            --text-color: #590d22;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar {
+            background-color: var(--secondary-color);
+        }
+        
+        .infinity-icon {
+            color: var(--text-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .venue-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .venue-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff7096;
+            border-color: #ff7096;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-infinity infinity-icon"></i>Application
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="home-link">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="venues-link">Заведения</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="login-link">Вход</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="register-link">Регистрация</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4" id="content">
+        <div class="jumbotron text-center py-5">
+            <h1 class="display-4"><i class="fas fa-infinity infinity-icon"></i>Добро пожаловать в Молодость!</h1>
+            <p class="lead">Лучшее заведение с отзывами реальных посетителей</p>
+            <hr class="my-4">
+            <p>Зарегистрируйтесь, чтобы оставлять свои отзывы и оценки</p>
+            <button class="btn btn-primary btn-lg" id="show-register">Начать</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
