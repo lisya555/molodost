@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заявки</title>
+</head>
+<body>
+    <div>
+        <a href = "AddProduct.html">Добавить новый товар</a>
+        <a href = "GetProduct.html">Главная</a>
+        <a href = "UpdateProduct.html">Редактировать товар</a>
+    </div>
+    <table>
+        <tr>
+            <th>Номер заявки</th>
+            <th>Дата добавления</th>
+            <th>Тип оборудования</th>
+            <th>Модель</th>
+            <th>Тип проблемы</th>
+            <th>ФИО Клиента</th>
+            <th>Номер телефона</th>
+            <th>Статус заявки</th>
+            <th>Мастер</th>
+            <th>Комментарий</th>
+        </tr>
+    </table>
+
+    <script>
+        let table = document.querySelector("table");
+        GetOrders();
+
+        async function GetOrders()
+        {
+            let response = await fetch("http://localhost:5148/orders",{method:"GET"});
+            let orders = await response.json();
+
+            orders.repo.forEach (o => {
+                let tr = document.createElement("tr");
+
+                tr.append(CreateTd(o.number));
+                tr.append(CreateTd(o.startDate.substring(0,10))); 
+                tr.append(CreateTd(o.device)); 
+                tr.append(CreateTd(o.model)); 
+                tr.append(CreateTd(o.problemtype)); 
+                tr.append(CreateTd(o.fullnameclient)); 
+                tr.append(CreateTd(o.phone)); 
+                tr.append(CreateTd(o.status)); 
+                tr.append(CreateTd(o.master));
+                tr.append(CreateTd(o.comment));
+
+                table.append(tr)
+            });
+        }
+        function CreateTd(data)
+        {
+            let td = document.createElement("td");
+            td.append(data);
+            return td;
+        }
+    </script>
+
+</body>
+</html>
