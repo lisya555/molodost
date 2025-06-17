@@ -1,105 +1,76 @@
-
-List<PartnerRequest> repo =
+List<FurnitureProduct> productsRepo =
 [
-   
-    new(1, 1, new DateOnly(2023, 1, 1), "Продукт A", "Модель X", "Ремонт",
-        "Иванов Иван", "79991234567", "Новая"),
+    new(1, "Современный диван", "Современный", "Дуб", 25000, 1),
+    new(2, "Классическое кресло", "Классика", "Орех", 18000, 2)
 ];
 
+List<ProductionWorkshop> workshopsRepo =
+[
+    new(1, "Цех №1 (Деревообработка)"),
+    new(2, "Цех №2 (Сборка мебели)")
+];
 
 var builder = WebApplication.CreateBuilder();
-
-// Добавление сервисов CORS (Cross-Origin Resource Sharing)
 builder.Services.AddCors();
-
-
 var app = builder.Build();
 
-// Настройка политики CORS (разрешаем все origins, методы и заголовки)
 app.UseCors(a => a.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
 
 string message = "";
 
-//получение заявок
-app.MapGet("requests", (int param = 0) =>
+// Просмотр списка продукции
+app.MapGet("products", (int param = 0) =>
 {
-    
     string buffer = message;
     message = "";
-
-    // Если указан параметр - возвращаем заявки с указанным номером
     if (param != 0)
-        return new { repo = repo.FindAll(x => x.Number == param), message = buffer };
-
-    // Иначе возвращаем все заявки
-    return new { repo, message = buffer };
+        return new { repo = productsRepo.FindAll(x => x.Id == param), message = buffer };
+    return new { products = productsRepo, message = buffer };
 });
 
-// Создание новой заявки
-app.MapPost("create", ([AsParameters] PartnerRequest dto) =>
-    repo.Add(dto)); 
+// Добавление продукции
+app.MapPost("products/create", ([AsParameters] FurnitureProduct dto) =>
+    productsRepo.Add(dto));
 
-//обновление заявки
-app.MapPut("update", ([AsParameters] UpdateRequestDTO dto) =>
+// Редактирование продукции
+app.MapPut("products/update", ([AsParameters] UpdateProductDTO dto) =>
 {
-    // Ищем заявку по номеру
-    var r = repo.Find(x => x.Number == dto.Number);
-    if (r == null)
-        return; 
+    var p = productsRepo.Find(x => x.Id == dto.Id);
+    if (p == null) return;
 
-   
-    if (dto.ProblemType != "")
-        r.ProblemType = dto.ProblemType;
-    if (dto.Master != "")
-        r.Master = dto.Master;
-    if (dto.Comment != "")
-        r.Comments.Add(dto.Comment);
-    if (dto.Status != "")
-        r.Status = dto.Status;
+    if (dto.Name != "") p.Name = dto.Name;
+    if (dto.Style != "") p.Style = dto.Style;
+    if (dto.Material != "") p.Material = dto.Material;
+    if (dto.Price != 0) p.Price = dto.Price;
+    if (dto.WorkshopId != 0) p.WorkshopId = dto.WorkshopId;
 });
 
- //удаление заявки
-app.MapDelete("delete/{number}", (int number) =>
-{
-    
-    PartnerRequest? r = repo.FirstOrDefault(u => u.Number == number);
-
-    // Если не найдена - возвращаем 404
-    if (r == null) return Results.NotFound(new { message = "Заявка не найдена" });
-
-    // Удаляем заявку из списка
-    repo.Remove(r);
-
-    // Возвращаем удаленную заявку
-    return Results.Json(r);
-});
+// Просмотр цехов
+app.MapGet("workshops", () => workshopsRepo);
 
 app.Run();
 
-
-class PartnerRequest(int number, int partnerId, DateOnly requestDate, string device, string model,
-                    string problemType, string partnerName, string phone, string status)
+class FurnitureProduct(int id, string name, string style, string material, decimal price, int workshopId)
 {
-    public int Number { get; set; } = number;               
-    public int PartnerId { get; set; } = partnerId;         
-    public DateOnly RequestDate { get; set; } = requestDate;// Дата создания заявки
-    public string Device { get; set; } = device;            // Тип устройства
-    public string Model { get; set; } = model;             // Модель устройства
-    public string ProblemType { get; set; } = problemType;  // Тип проблемы
-    public string PartnerName { get; set; } = partnerName;  // Имя партнера
-    public string Phone { get; set; } = phone;             // Контактный телефон
-    public string Status { get; set; } = status;           // Статус заявки
-    public string? Master { get; set; } = "Не назначено";  // Назначенный мастер
-    public List<string> Comments { get; set; } = [];       // Комментарии к заявке
-    public decimal TotalAmount { get; set; } = 0;          // Общая сумма (пока не используется)
+    public int Id { get; set; } = id;
+    public string Name { get; set; } = name;
+    public string Style { get; set; } = style;
+    public string Material { get; set; } = material;
+    public decimal Price { get; set; } = price;
+    public int WorkshopId { get; set; } = workshopId;
 }
 
-// DTO
-record class UpdateRequestDTO(
-    int Number,                 // Номер заявки (обязательное поле)
-    string? Status = "",        // Новый статус (необязательное)
-    string? ProblemType = "",   // Новый тип проблемы (необязательное)
-    string? Master = "",        // Новый мастер (необязательное)
-    string? Comment = ""        // Новый комментарий (необязательное)
+class ProductionWorkshop(int id, string name)
+{
+    public int Id { get; set; } = id;
+    public string Name { get; set; } = name;
+}
+
+record class UpdateProductDTO(
+    int Id,
+    string? Name = "",
+    string? Style = "",
+    string? Material = "",
+    decimal Price = 0,
+    int WorkshopId = 0
 );
