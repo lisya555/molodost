@@ -1,52 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Заявки</title>
+    <title>Заявки партнеров</title>
 </head>
 <body>
     <div>
-        <a href = "AddProduct.html">Добавить новый товар</a>
-        <a href = "GetProduct.html">Главная</a>
-        <a href = "UpdateProduct.html">Редактировать товар</a>
+        <a href="AddRequest.html">Создать заявку</a>
+        <a href="GetRequests.html">Просмотр заявок</a>
+        <a href="UpdateRequest.html">Редактировать заявку</a>
     </div>
+    
     <table>
         <tr>
-            <th>Номер заявки</th>
-            <th>Дата добавления</th>
-            <th>Тип оборудования</th>
+            <th>Номер</th>
+            <th>ID партнера</th>
+            <th>Дата заявки</th>
+            <th>Устройство</th>
             <th>Модель</th>
             <th>Тип проблемы</th>
-            <th>ФИО Клиента</th>
-            <th>Номер телефона</th>
-            <th>Статус заявки</th>
+            <th>Партнер</th>
+            <th>Телефон</th>
+            <th>Статус</th>
             <th>Мастер</th>
-            <th>Комментарий</th>
+            <th>Комментарии</th>
         </tr>
     </table>
 
     <script>
         let table = document.querySelector("table");
-        GetOrders();
+        GetRequests();
 
-        async function GetOrders()
+        async function GetRequests()
         {
-            let response = await fetch("http://localhost:5148/orders",{method:"GET"});
-            let orders = await response.json();
+            let response = await fetch("http://localhost:5148/requests",{method:"GET"});
+            let requests = await response.json();
 
-            orders.repo.forEach (o => {
+            requests.repo.forEach (r => {
                 let tr = document.createElement("tr");
 
-                tr.append(CreateTd(o.number));
-                tr.append(CreateTd(o.startDate.substring(0,10))); 
-                tr.append(CreateTd(o.device)); 
-                tr.append(CreateTd(o.model)); 
-                tr.append(CreateTd(o.problemtype)); 
-                tr.append(CreateTd(o.fullnameclient)); 
-                tr.append(CreateTd(o.phone)); 
-                tr.append(CreateTd(o.status)); 
-                tr.append(CreateTd(o.master));
-                tr.append(CreateTd(o.comment));
+                tr.append(CreateTd(r.number));
+                tr.append(CreateTd(r.partnerId)); 
+                tr.append(CreateTd(r.requestDate)); 
+                tr.append(CreateTd(r.device)); 
+                tr.append(CreateTd(r.model)); 
+                tr.append(CreateTd(r.problemType)); 
+                tr.append(CreateTd(r.partnerName)); 
+                tr.append(CreateTd(r.phone)); 
+                tr.append(CreateTd(r.status)); 
+                tr.append(CreateTd(r.master || "Не назначено"));
+                tr.append(CreateTd(r.comments?.join(", ") || "Нет комментариев"));
 
                 table.append(tr)
             });
@@ -58,6 +61,5 @@
             return td;
         }
     </script>
-
 </body>
 </html>

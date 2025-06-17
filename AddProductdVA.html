@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление заявками партнеров</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .nav { margin-bottom: 20px; }
+        .nav a { margin-right: 15px; text-decoration: none; color: #0066cc; }
+        form { max-width: 500px; border: 1px solid #ddd; padding: 20px; border-radius: 5px; }
+        input, select { width: 100%; padding: 8px; margin: 5px 0 15px; box-sizing: border-box; }
+        input[type="submit"] { background-color: #4CAF50; color: white; cursor: pointer; }
+        input[type="submit"]:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="GetRequests.html">Просмотр заявок</a>
+        <a href="AddRequest.html">Создать заявку</a>
+        <a href="UpdateRequest.html">Редактировать заявку</a>
+    </div>
+    
+    <iframe name="frame" style="display: none;"></iframe>
+    
+    <form target="frame" action="http://localhost:5148/create" method="post">
+        <h2>Создание заявки партнера</h2>
+        
+        <input required placeholder="Номер заявки" type="number" name="number"/><br/>
+        
+        <input required placeholder="ID партнера" type="number" name="partnerId"/><br/>
+        
+        <label for="requestDate">Дата заявки</label><br/>
+        <input required type="date" name="requestDate"/><br/>
+        
+        <input required placeholder="Устройство" type="text" name="device"/><br/>
+        
+        <input required placeholder="Модель" type="text" name="model"/><br/>
+        
+        <input required placeholder="Тип проблемы" type="text" name="problemType"/><br/>
+        
+        <input required placeholder="Имя партнера" type="text" name="partnerName"/><br/>
+        
+        <input required placeholder="Телефон" type="tel" name="phone" pattern="[0-9]{11}"/><br/>
+        
+        <label for="status">Статус заявки</label><br/>
+        <select name="status" required>
+            <option value="Новая">Новая</option>
+            <option value="В работе">В работе</option>
+            <option value="Выполнена">Выполнена</option>
+            <option value="Отменена">Отменена</option>
+        </select><br/>
+        
+        <input placeholder="Мастер" type="text" name="master" value="Не назначено"/><br/>
+        
+        <input type="submit" value="Создать заявку"/>
+    </form>
+
+    <script>
+        // Установка текущей даты по умолчанию
+        document.querySelector('input[name="requestDate"]').valueAsDate = new Date();
+    </script>
+</body>
+</html>
